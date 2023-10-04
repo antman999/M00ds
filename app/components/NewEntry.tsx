@@ -13,7 +13,7 @@ const NewEntry = () => {
   }
 
   return (
-    <div className="cursor-pointer bg-indigo-600 text-white overflow-hidden rounded-lg shadow">
+    <div className="cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white overflow-hidden rounded-lg shadow">
       <div className="px-4 py-5 sm:p-6" onClick={handleClick}>
         <span className="text-4xl">New Note+</span>
       </div>

@@ -2,34 +2,37 @@ import Link from 'next/link'
 import { UserButton } from '@clerk/nextjs'
 
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/journal', label: 'Journal' },
   { href: '/history', label: 'History' },
 ]
 
 const DashboardLayout = ({ children }) => {
   return (
-    <div className="h-screen w-screen relative">
-      <aside className="absolute w-[200px] top-0 left-0 h-full border-r border-zinc-500/40">
-        <div>M00ds</div>
-        <ul>
+    <div className="relative min-h-screen md:flex">
+      <div className=" flex flex-col sidebar border-r border-zync-600 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+        <Link
+          href="/"
+          className="text-2xl font-extrabold flex items-center space-x-2 px-4"
+        >
+          M00ds
+        </Link>
+        <ul className="grow">
           {links.map((link) => {
             return (
-              <li key={link.href} className="px-2 py-6 text-lg">
+              <li
+                key={link.href}
+                className="block py-2.5 px-4 rounded transition duration-200 hover:bg-indigo-600 hover:text-white"
+              >
                 <Link href={link.href}>{link.label}</Link>
               </li>
             )
           })}
         </ul>
-      </aside>
-      <div className="ml-[200px] h-full">
-        <header className="h-[60px] border-b border-zinc-500/40">
-          <div className="h-full w-full px-6 flex items-center justify-end">
-            <UserButton />
-          </div>
-        </header>
-        <div className="h-full">{children}</div>
+        <div className="mt-auto block py-2.5 px-4 rounded">
+          <UserButton showName userProfileMode="navigation" />
+        </div>
       </div>
+      <div className="flex-1">{children}</div>
     </div>
   )
 }
